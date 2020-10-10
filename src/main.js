@@ -54,6 +54,13 @@ router.beforeEach(function(to, from, next) {
   next() // true | false | String (route)
 })
 
+// can't use it to control what user sees on screen
+// could be useful for app analytics (where did user go from here to there)
+router.afterEach(function(to, from) {
+  console.log('Global afterEach()')
+  console.log(to, from)
+})
+
 const app = createApp(App)
 
 app.use(router)
