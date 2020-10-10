@@ -15,6 +15,7 @@ const router = new createRouter({
     { path: '/', redirect: '/teams' }, // redirect from root
     { name: 'teams',
       path: '/teams',
+      meta: { needsAuth: true },
       components: { default: TeamsList, footer: TeamsFooter } ,
       children: [
         { name: 'team-members', path: ':teamId', component: TeamMembers, props: true} // e.g. teams/t1
@@ -51,7 +52,14 @@ const router = new createRouter({
 router.beforeEach(function(to, from, next) {
   console.log('Global beforeEach()')
   console.log(to,from)
-  next() // true | false | String (route)
+
+  // example of using meta for a global route guard for authenticated routes
+  if (to.meta.needsAuth) {
+    console.log('Needs auth!')
+    next()
+  } else {
+    next() // true | false | String (route)
+  }
 })
 
 // can't use it to control what user sees on screen
