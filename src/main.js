@@ -25,7 +25,16 @@ const router = new createRouter({
     } }, // domain-name.com/users ==> ...
     { path: '/:notFound(.*)', component: NotFound } // dynamic segment catch any route not handled - must be LAST in routes list
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    console.log(to, from, savedPosition )
+
+    // useful for back button
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { left: 0, top: 0} // take us to the top
+  }
 });
 
 const app = createApp(App)
