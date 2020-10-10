@@ -1,8 +1,12 @@
 <template>
   <the-navigation></the-navigation>
   <main>
+    <!-- default router-view -->
     <router-view></router-view>
   </main>
+  <footer>
+    <router-view name="footer"></router-view>
+  </footer>
 </template>
 
 <script>
@@ -26,15 +30,15 @@ export default {
         { id: 'u4', fullName: 'Alex Blackfield', role: 'Consultant' },
         { id: 'u5', fullName: 'Marie Smith', role: 'Consultant' },
       ],
-    };
+    }
   },
   provide() {
     return {
       teams: this.teams,
       users: this.users,
-    };
+    }
   }
-};
+}
 </script>
 
 <style>
