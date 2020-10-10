@@ -26,8 +26,10 @@ const router = new createRouter({
     { path: '/:notFound(.*)', component: NotFound } // dynamic segment catch any route not handled - must be LAST in routes list
   ],
   linkActiveClass: 'active',
-  scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition )
+
+  // Note _ and _2 are used to indicate we don't intend to use these params (we just want savedPosition)
+  scrollBehavior(_, _2, savedPosition) {
+  // scrollBehavior(to, from, savedPosition) {
 
     // useful for back button
     if (savedPosition) {
@@ -36,6 +38,13 @@ const router = new createRouter({
     return { left: 0, top: 0} // take us to the top
   }
 });
+
+// NavigationGuard: called before navigation
+router.beforeEach(function(to, from, next) {
+  console.log('Global beforeEach()')
+  console.log(to,from)
+  next() // true | false | String (route)
+})
 
 const app = createApp(App)
 
