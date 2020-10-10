@@ -45,6 +45,13 @@ export default {
     this.loadTeamMembers(this.teamId)
     console.log(this.$route.query) // view query param
   },
+
+  beforeRouteUpdate(to, from, next) {
+    console.log('TeamMembers beforeRouteUpdate')
+    // this hook could be an alternative to using watch (but not as flexible: only called when component loaded/reloaded)
+    // this.loadTeamMembers(to.params.teamId)
+    next()
+  },
   // watch for route changes
   watch: {
     teamId(newId) {

@@ -20,9 +20,17 @@ const router = new createRouter({
         { name: 'team-members', path: ':teamId', component: TeamMembers, props: true} // e.g. teams/t1
       ]
     }, // domain-name.com/teams ==> ... we could use alias: '/' here but alias won't change content/url?
-    { path: '/users', components: {
-      default: UsersList, footer: UsersFooter
-    } }, // domain-name.com/users ==> ...
+    { path: '/users',
+      components: {
+        default: UsersList,
+        footer: UsersFooter
+      },
+      beforeEnter(to, from, next) {
+        console.log('users beforeEnter')
+        console.log(to, from)
+        next()
+      }
+    }, // domain-name.com/users ==> ...
     { path: '/:notFound(.*)', component: NotFound } // dynamic segment catch any route not handled - must be LAST in routes list
   ],
   linkActiveClass: 'active',

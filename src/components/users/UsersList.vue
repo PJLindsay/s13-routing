@@ -18,6 +18,12 @@ export default {
       // programatic route change
       this.$router.push('/teams')
     }
+  },
+  // local Navigation Guards are possible like this...
+  beforeRouteEnter(to, from, next) {
+    console.log('UsersList beforeRouteEnter')
+    console.log(to,from)
+    next()
   }
 }
 </script>
