@@ -1,4 +1,6 @@
 <template>
+  <!-- need another router-view for child routes -->
+  <router-view></router-view>
   <ul>
     <teams-item
       v-for="team in teams"
