@@ -9,7 +9,7 @@
 <script>
 export default {
   props: ['name', 'memberCount'],
-};
+}
 </script>
 
 <style scoped>
